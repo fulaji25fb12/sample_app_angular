@@ -1,0 +1,53 @@
+<router-outlet></router-outlet>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h5 class="text-center py-3">Testing App with NodeJS API</h5>
+      <p class="text-center text-primary">{{ textMsg }}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="table-primary">
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="courseData?.length > 0;">
+            <tr *ngFor="let course of courseData;">
+              <td>{{ course.id }}</td>
+              <td>{{ course.name }}</td>
+              <td>
+                <div class="d-flex gap-2 align-items-center">
+                  <i class="fas fa-edit" (click)="editCourse(course.id)"></i>
+                  <i class="fas fa-trash" (click)="deleteCourse(course.id)"></i>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h6 class="card-title">{{ cardTitle }} Course</h6>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="courseForm" (ngSubmit)="submitForm()">
+            <div class="mb-2">
+              <label for="name" class="form-label">Cours Name:</label>
+              <input type="text" class="form-control" name="name" formControlName="name" />
+            </div>
+            <input type="submit" [value]="btnValue" class="btn btn-outline-primary px-4 py-1">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
